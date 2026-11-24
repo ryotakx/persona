@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -346,7 +347,8 @@ private fun SetupPage(
         }
         extra?.invoke()
         JDivider()
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        // Reserve the reset button's touch height so its appearance does not move the slider.
+        Row(Modifier.heightIn(min = Tokens.MinTouch.android), verticalAlignment = Alignment.CenterVertically) {
             Text(stringResource(when {
                 row.kind == PanelRow.Kind.Favorite -> R.string.designsystem_modelpanel_setup_saved
                 override != null -> R.string.designsystem_modelpanel_setup_customized
